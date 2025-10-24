@@ -1,4 +1,6 @@
-import { Column, DataType, Model, Table } from "sequelize-typescript";
+import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
+import { Color } from "src/resources/colors/entities/color.entity";
+import { Engine } from "src/resources/engines/entities/engine.entity";
 
 @Table({
     tableName: 'Vehicles',
@@ -24,6 +26,7 @@ export class Vehicle extends Model {
     })
     declare year: string;
 
+    @ForeignKey(() => Color)
     @Column({
         type: DataType.STRING({ length: 250 }),
         allowNull: true
@@ -36,6 +39,7 @@ export class Vehicle extends Model {
     })
     declare cost: string;
 
+    @ForeignKey(() => Engine)
     @Column({
         type: DataType.STRING({ length: 250 }),
         allowNull: true
@@ -47,4 +51,10 @@ export class Vehicle extends Model {
         allowNull: false
     })
     declare doors: string;
+
+    @BelongsTo(() => Color)
+    colorVehicle: Color;
+
+    @BelongsTo(() => Engine)
+    engineVehicle: Engine
 }

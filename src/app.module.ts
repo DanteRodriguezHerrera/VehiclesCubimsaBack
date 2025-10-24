@@ -6,6 +6,8 @@ import { VehiclesModule } from './resources/vehicles/vehicles.module';
 import { Vehicle } from './resources/vehicles/entities/vehicle.entity';
 import { EnginesModule } from './resources/engines/engines.module';
 import { Engine } from './resources/engines/entities/engine.entity';
+import { ColorsModule } from './resources/colors/colors.module';
+import { Color } from './resources/colors/entities/color.entity';
 
 
 @Module({
@@ -19,11 +21,13 @@ import { Engine } from './resources/engines/entities/engine.entity';
       database: 'VehiculosCubimsa_usemiddle',
       models: [
         Vehicle,
-        Engine
+        Engine,
+        Color
       ],
     }),
     VehiclesModule,
-    EnginesModule
+    EnginesModule,
+    ColorsModule
   ],
   controllers: [AppController],
   providers: [AppService],

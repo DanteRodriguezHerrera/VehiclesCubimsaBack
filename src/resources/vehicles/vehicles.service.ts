@@ -3,6 +3,8 @@ import { CreateVehicleDto } from './dto/create-vehicle.dto';
 import { UpdateVehicleDto } from './dto/update-vehicle.dto';
 import { Vehicle } from './entities/vehicle.entity';
 import { v4 as uuid } from 'uuid'
+import { Color } from '../colors/entities/color.entity';
+import { Engine } from '../engines/entities/engine.entity';
 
 @Injectable()
 export class VehiclesService {
@@ -33,7 +35,23 @@ export class VehiclesService {
 
   async findAll() {
     try {
-      const vehicles = await this.vehiclesRepository.findAll();
+      const vehicles = await this.vehiclesRepository.findAll({
+        attributes: [
+          'idVehicle',
+          'model',
+          'year',
+          'cost',
+          'doors'
+        ],
+        include: [
+          {
+            model: Color
+          },
+          {
+            model: Engine
+          }
+        ]
+      });
       if (!vehicles) return { message: 'Cannot find any register of vehicles' };
       return {
         message: 'Find all the vehicles correctly',
