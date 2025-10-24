@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { VehiclesModule } from './resources/vehicles/vehicles.module';
 import { Vehicle } from './resources/vehicles/entities/vehicle.entity';
+import { EnginesModule } from './resources/engines/engines.module';
+import { Engine } from './resources/engines/entities/engine.entity';
 
 
 @Module({
@@ -16,10 +18,12 @@ import { Vehicle } from './resources/vehicles/entities/vehicle.entity';
       password: 'ad677d53d78dbc4c23c14a2e64f3f01683a1dbb9',
       database: 'VehiculosCubimsa_usemiddle',
       models: [
-        Vehicle
+        Vehicle,
+        Engine
       ],
     }),
-    VehiclesModule
+    VehiclesModule,
+    EnginesModule
   ],
   controllers: [AppController],
   providers: [AppService],
