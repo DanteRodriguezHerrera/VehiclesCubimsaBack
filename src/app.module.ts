@@ -8,10 +8,12 @@ import { EnginesModule } from './resources/engines/engines.module';
 import { Engine } from './resources/engines/entities/engine.entity';
 import { ColorsModule } from './resources/colors/colors.module';
 import { Color } from './resources/colors/entities/color.entity';
+import { ScheduleModule } from '@nestjs/schedule';
 
 
 @Module({
   imports: [
+    ScheduleModule.forRoot(),
     SequelizeModule.forRoot({
       dialect: 'mysql',
       host: '8zgiah.h.filess.io',
